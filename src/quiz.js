@@ -47,4 +47,26 @@ class Quiz {
     hasEnded() {
         return this.currentQuestionIndex >= this.questions.length;
     }
+
+     // Method to filter questions by difficulty
+    filterQuestionsByDifficulty(difficulty) {
+        if (difficulty >= 1 && difficulty <= 3) {
+            this.questions = this.questions.filter((question) => question.difficulty === difficulty);
+        }
+    }
+
+    // Method to calculate the average difficulty of the questions
+    averageDifficulty() {
+        if (this.questions.length === 0) 
+            return 0; // Avoid division by zero if there are no questions
+
+        const totalDifficulty = this.questions.reduce((sum, question) => sum + question.difficulty, 0);
+        // reduce() method iterates through each element of the questions array.
+        // The sum argument accumulates the total sum of the difficulties.
+        // For each question, question.difficulty is added to sum.
+        // The 0 at the end is the initial value for sum, starting the accumulation from 0.
+        
+        return totalDifficulty / this.questions.length;
+        //Once the total difficulty is calculated, it divides this value by the number of questions to get the average difficulty.
+  }
 }
